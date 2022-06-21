@@ -81,4 +81,3 @@ for i in list_item_blood_biochemistry:
         i.show(value=(float(i.str_show.replace(',', '.'))))
     except ValueError:
         print("\033[31m{}".format(f'Введены некорректные данные уровня {i.name}!'))
-#   Добавляю изменения для commit с последующим удалением этого commit
