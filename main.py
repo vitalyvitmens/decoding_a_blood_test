@@ -1,5 +1,6 @@
 class OAK:
-    def __init__(self, name, nick, limit_low, minimum_reference, maximum_reference, limit_high, units):
+    def __init__(self, name: str, nick: str, limit_low: float, minimum_reference: float, maximum_reference: float,
+                 limit_high: float, units: str):
         """
         Класс OAK (общего анализа крови), включает в себя, для каждого общего анализа крови следующие параметры:
         name: название анализа
@@ -18,7 +19,7 @@ class OAK:
         self.limit_high = limit_high
         self.units = units
 
-    def show(self, value):
+    def show(self, value: float):
         """
         Метод show получает на вход параметр value, равный значению пользовательского ввода, какого то конкретного
         параметра из общего анализа крови, в заданных ему единицах измерения и возвращает интерпретацию значения
@@ -54,14 +55,65 @@ basso = OAK('Базофилы', '(BASSO)', 0, 0.01, 1, 20, '[%]: ')
 esr = OAK('СОЭ', '(ESR)', 0, 2, 8, 30, '[мм/час]: ')
 
 print("\033[01;4m{}".format(" ВВЕДИТЕ ЗНАЧЕНИЯ ОБЩЕГО АНАЛИЗА КРОВИ: "))
-list_item_blood = [wbc, rbc, hgb, hct, plt, neut, neut_p, neut_s, lymph,
-                   mono, eos, basso, esr]
-for i in list_item_blood:
+list_of_blood_counts = [wbc, rbc, hgb, hct, plt, neut, neut_p, neut_s, lymph,
+                        mono, eos, basso, esr]
+for i in list_of_blood_counts:
     try:
-        i.str_show = input("\033[0m{}".format(f'{i.name} {i.nick} в ед.изм.{i.units}'))
-        i.show(value=(float(i.str_show.replace(',', '.'))))
+        i.input_value = input("\033[0m{}".format(f'{i.name} {i.nick} в ед.изм.{i.units}'))
+        i.str_show = i.input_value
+        i.show(float(i.str_show.replace(',', '.')))
     except ValueError:
         print("\033[31m{}".format(f'Введены некорректные данные уровня {i.name}!'))
+
+wbc_input = list_of_blood_counts[0].input_value
+rbc_input = list_of_blood_counts[1].input_value
+hgb_input = list_of_blood_counts[2].input_value
+hct_input = list_of_blood_counts[3].input_value
+plt_input = list_of_blood_counts[4].input_value
+neut_input = list_of_blood_counts[5].input_value
+neut_p_input = list_of_blood_counts[6].input_value
+neut_s_input = list_of_blood_counts[7].input_value
+lymph_input = list_of_blood_counts[8].input_value
+mono_input = list_of_blood_counts[9].input_value
+eos_input = list_of_blood_counts[10].input_value
+basso_input = list_of_blood_counts[11].input_value
+esr_input = list_of_blood_counts[12].input_value
+
+list_of_blood_counts_input = [wbc_input, rbc_input, hgb_input, hct_input, plt_input, neut_input, neut_p_input,
+                              neut_s_input,
+                              lymph_input, mono_input, eos_input, basso_input, esr_input]
+
+try:
+    try:
+        if 0 < float(list_of_blood_counts[0].input_value) < 4:
+            print("\033[33m{}".format(
+                f'{list_of_blood_counts[0].name} понижены, Вы переболели вирусной и/или '
+                f'бактериальной инфекцией!'))
+        if 9.5 < float(list_of_blood_counts[0].input_value) <= 30:
+            print("\033[31m{}".format(
+                f'{list_of_blood_counts[0].name} повышены, Вы болеете вирусной и/или бактериальной инфекцией!'))
+    except ValueError:
+        pass
+    try:
+        if 0 < float(list_of_blood_counts[1].input_value) < 3.6:
+            print("\033[33m{}".format(
+                f'{list_of_blood_counts[1].name} понижены, у Вас острое или хроническое кровотечение!'))
+        if 5.1 < float(list_of_blood_counts[1].input_value) <= 30:
+            print("\033[31m{}".format(
+                f'{list_of_blood_counts[1].name} повышены, у Вас повышенная продукция эритроцитов!'))
+    except ValueError:
+        pass
+    try:
+        if 30 < float(list_of_blood_counts[2].input_value) < 130:
+            print("\033[33m{}".format(f'{list_of_blood_counts[2].name} понижен, у Вас анемия!'))
+        if 160 < float(list_of_blood_counts[2].input_value) <= 300:
+            print("\033[31m{}".format(
+                f'{list_of_blood_counts[2].name} повышен, у Вас повышенная физическая нагрузка или '
+                f'пребывание на больших высотах или ожирение!'))
+    except ValueError:
+        pass
+except ValueError:
+    pass
 
 """ БЛОК АНАЛИЗОВ КРОВИ: БИОХИМИЯ """
 glucose = OAK('Глюкоза', '(Glucose)', 0, 3.9, 5.6, 50, '[mmol/L]: ')
@@ -85,7 +137,7 @@ alp = OAK('Щелочная фосфатаза', '(ALP)', 0, 40, 130, 3000, '[U/
 alpha_amylase = OAK('Альфа-Амилаза', '(Alpha-Amylase)', 0, 28, 100, 500, '[U/L]: ')
 lipase = OAK('Липаза', '(Lipase)', 0, 13, 60, 1000, '[U/L]: ')
 
-print("\033[01;4m{}".format(" ВВЕДИТЕ ЗНАЧЕНИЯ БИОХИМИЧЕСКОГО ИССЛЕДОВАНИЯ: "))
+print("\033[37;4m{}".format("\n ВВЕДИТЕ ЗНАЧЕНИЯ БИОХИМИЧЕСКОГО ИССЛЕДОВАНИЯ: "))
 list_item_blood_biochemistry = [glucose, cholesterol, hdl, ldl, triglyceride,
                                 gpt, got, ggt, total_bilirubin, direct_bilirubin,
                                 creatinine, urea, uric_acid, total_protein, albumin,
