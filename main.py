@@ -1,5 +1,15 @@
 class OAK:
     def __init__(self, name, nick, limit_low, minimum_reference, maximum_reference, limit_high, units):
+        """
+        Класс OAK (общего анализа крови), включает в себя, для каждого общего анализа крови следующие параметры:
+        name: название анализа
+        nick: сокращенное название анализа
+        limit_low: минимально-реальный предел показаний анализа
+        minimum_reference: минимальный референс анализа
+        maximum_reference: максимальный референс анализа
+        limit_high: максимально-реальный предел показаний анализа
+        units: еденица измерения анализа
+        """
         self.name = name
         self.nick = nick
         self.limit_low = limit_low
@@ -9,6 +19,11 @@ class OAK:
         self.units = units
 
     def show(self, value):
+        """
+        Метод show получает на вход параметр value, равный значению пользовательского ввода какого то общего
+        анализа крови в заданных конкретно ему единицах измерения и возвращает интерпретацию значения
+        (понижен, в норме, повышен) референса данного анализа
+        """
         if self.limit_low < value < self.minimum_reference:
             print("\033[33m{}".format(f'{self.name} понижены!'))
         elif self.minimum_reference <= value <= self.maximum_reference:
