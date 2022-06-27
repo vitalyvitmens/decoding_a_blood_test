@@ -87,29 +87,55 @@ try:
     try:
         if 0 < float(list_of_blood_counts[0].input_value) < 4:
             print("\033[33m{}".format(
-                f'{list_of_blood_counts[0].name} понижены, Вы переболели вирусной и/или '
-                f'бактериальной инфекцией!'))
+                f'{list_of_blood_counts[0].name} понижены возможные причины: переболели вирусной и/или '
+                f'бактериальной инфекцией.'))
         if 9.5 < float(list_of_blood_counts[0].input_value) <= 30:
             print("\033[31m{}".format(
-                f'{list_of_blood_counts[0].name} повышены, Вы болеете вирусной и/или бактериальной инфекцией!'))
+                f'{list_of_blood_counts[0].name} повышены возможные причины: болеете вирусной и/или '
+                f'бактериальной инфекцией.'))
     except ValueError:
         pass
     try:
         if 0 < float(list_of_blood_counts[1].input_value) < 3.6:
             print("\033[33m{}".format(
-                f'{list_of_blood_counts[1].name} понижены, у Вас острое или хроническое кровотечение!'))
+                f'{list_of_blood_counts[1].name} понижены возможные причины: острое или хроническое кровотечение.'))
         if 5.1 < float(list_of_blood_counts[1].input_value) <= 30:
             print("\033[31m{}".format(
-                f'{list_of_blood_counts[1].name} повышены, у Вас повышенная продукция эритроцитов!'))
+                f'{list_of_blood_counts[1].name} повышены возможные причины: повышенная продукция эритроцитов.'))
     except ValueError:
         pass
     try:
         if 30 < float(list_of_blood_counts[2].input_value) < 130:
-            print("\033[33m{}".format(f'{list_of_blood_counts[2].name} понижен, у Вас анемия!'))
+            print("\033[33m{}".format(f'{list_of_blood_counts[2].name} понижен возможные причины: анемия.'))
         if 160 < float(list_of_blood_counts[2].input_value) <= 300:
             print("\033[31m{}".format(
-                f'{list_of_blood_counts[2].name} повышен, у Вас повышенная физическая нагрузка или '
-                f'пребывание на больших высотах или ожирение!'))
+                f'{list_of_blood_counts[2].name} повышен возможные причины: повышенная физическая нагрузка или '
+                f'пребывание\nна больших высотах или ожирение.'))
+    except ValueError:
+        pass
+    try:
+        if 25 < float(list_of_blood_counts[3].input_value) < 39:
+            print("\033[33m{}".format(f'{list_of_blood_counts[3].name} понижен возможные причины: дефицит железа либо '
+                                      f'острая или хроническая кровопотеря.'))
+        if 49 < float(list_of_blood_counts[3].input_value) <= 80:
+            print("\033[31m{}".format(
+                f'{list_of_blood_counts[3].name} повышен возможные причины: густая кровь в следствии недостаточного '
+                f'потребления жидкости\nили дегидратации, гипоксии или повышенной физической нагрузки.'))
+    except ValueError:
+        pass
+    try:
+        if 0 < float(list_of_blood_counts[4].input_value) < 150:
+            print("\033[33m{}".format(f'{list_of_blood_counts[4].name} понижены возможные причины: повышенное '
+                                      f'разрушение тромбоцитов\nв следствии иммунологических факторов (аутоиммунные) '
+                                      f'или неиммунологических факторов\n(тромбоцитические микроангиопатии, повреждения '
+                                      f'тромбоцитов при аномальных\nповерхностях сосудов, инфекционные заболевания '
+                                      f'различной вирусно-бактериальной этиологии ).'))
+        if 450 < float(list_of_blood_counts[4].input_value) <= 1000:
+            print("\033[31m{}".format(
+                f'{list_of_blood_counts[4].name} повышены возможные причины: инфекционные заболевания, '
+                f'воспалительные заболевания,\nзлокачественные заболевания, быстрое восстановление после '
+                f'геморрагии/гемолитической анемии,\nвозобновление симптомов после выздоровления при тромбоцитопении, '
+                f'\nанатомическая аспления, железодефицит, после оперативного вмешательства.'))
     except ValueError:
         pass
 except ValueError:
